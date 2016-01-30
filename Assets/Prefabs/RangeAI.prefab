@@ -78,7 +78,7 @@ MonoBehaviour:
   attackRange: 2
   projectileSpeed: 5
   projectilePrefab: {fileID: 166094, guid: e858101e5abf665418476289504b5511, type: 2}
-  attackDelay: 1
+  attackDelay: 0.5
 --- !u!212 &21283564
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -162,7 +162,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: attackDelay
-      value: 1
+      value: 0.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
