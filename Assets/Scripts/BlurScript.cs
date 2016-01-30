@@ -21,6 +21,7 @@ public class BlurScript : MonoBehaviour {
     {
         if (fade)
         {
+            add = false;
             if (motionBlur.blurAmount > 0f)
             {
                 motionBlur.blurAmount -= Time.deltaTime;
@@ -39,6 +40,7 @@ public class BlurScript : MonoBehaviour {
     {
         if (add)
         {
+            fade = false;
             if (motionBlur.blurAmount < 0.92f)
             {
                 motionBlur.blurAmount += Time.deltaTime;
