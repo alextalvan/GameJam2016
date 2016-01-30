@@ -1,14 +1,16 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Monk : MonoBehaviour 
+public class Monk : Damageable 
 {
 
-	[SerializeField]
-	int _currentCharge;
+	//[SerializeField]
+	//int _currentCharge;
 
-	[SerializeField]
-	int _maxCharge = 1000;
+	//[SerializeField]
+	//int _maxCharge = 1000;
+
+	MonkManager _manager;
 
 	[SerializeField]
 	int _chargeSpeed = 1;
@@ -25,6 +27,7 @@ public class Monk : MonoBehaviour
 	void Start () 
 	{
 		GetComponent<Animator> ().speed = 0.1f;
+		_manager = GameObject.Find ("Monks").GetComponent<MonkManager> ();
 	}
 	
 	
@@ -45,10 +48,11 @@ public class Monk : MonoBehaviour
 			_allowCharge = true;
 	}
 
+	/*
 	public bool HasMaxCharge()
 	{
 		return _currentCharge == _maxCharge;
-	}
+	}*/
 
 	public void Stun()
 	{
@@ -56,6 +60,7 @@ public class Monk : MonoBehaviour
 		interruptTimer = interruptDuration;
 	}
 
+	/*
 	public void RemoveCharge(int amount)
 	{
 		_currentCharge -= amount;
@@ -63,19 +68,18 @@ public class Monk : MonoBehaviour
 		if (_currentCharge < 0)
 			_currentCharge = 0;
 	}
+	*/
 
 
 	void IncrementCharge()
 	{
 		if (_allowCharge)
 		{
-			_currentCharge += _chargeSpeed;
-
-			if (_currentCharge > _maxCharge)
-				_currentCharge = _maxCharge;
+			_manager.IncrementCharge (_chargeSpeed);
 		}
 
 	}
+		
 
 	void OnCollisionEnter2D()
 	{

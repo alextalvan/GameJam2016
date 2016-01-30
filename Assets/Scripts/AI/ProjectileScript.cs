@@ -3,9 +3,18 @@ using System.Collections;
 
 public class ProjectileScript : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
-	
+	[SerializeField]
+	private int chargeDamage = 10;
+
+	[SerializeField]
+	private int attackDamage = 10;
+
+	MonkManager monkmng;
+
+	void Start()
+	{
+		
+		monkmng = GameObject.Find ("Monks").GetComponent<MonkManager> ();
 	}
 	
 	// Update is called once per frame
@@ -17,7 +26,14 @@ public class ProjectileScript : MonoBehaviour {
     {
         if (coll.gameObject.tag == "Monk")
         {
-            Debug.Log("HIT");
+            //Debug.Log("HIT");
+
+			Monk m = coll.collider.GetComponent<Monk> ();
+			m.Stun();
+			m.Damage (attackDamage);
+
+			monkmng.RemoveCharge (chargeDamage);
+
         }
         Destroy(gameObject);
     }

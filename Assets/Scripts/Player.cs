@@ -21,6 +21,11 @@ public class Player : MonoBehaviour
 	[SerializeField]
 	float attackDuration = 0.05f;
 
+	[SerializeField]
+	int dashesBeforeCooldown = 3;
+
+	int _currentDashCount;
+
 	//dashing
 	Vector2 _storedDashDir = Vector2.zero;
 	[SerializeField]
@@ -113,7 +118,12 @@ public class Player : MonoBehaviour
 			_dashing = false;
 		}
 
-		if (Input.GetMouseButtonDown (0))
+		if (attackCooldownTimer <= 0f)
+		{
+			_currentDashCount = 0;
+		}
+
+		if (Input.GetMouseButtonDown(0))
 		{
 			Vector2 mPos = Camera.main.ScreenToWorldPoint (Input.mousePosition);
 
@@ -129,20 +139,17 @@ public class Player : MonoBehaviour
 			_attackHelper.transform.rotation = Quaternion.Euler (0, 0, angle * 180f / Mathf.PI);
 
 
-			if (attackCooldownTimer <= 0f)
+			if (_currentDashCount < dashesBeforeCooldown)
 			{
-				
-				attackCooldownTimer = attackCooldownDuration;
 				attackDurationTimer = attackDuration;
+				attackCooldownTimer = attackCooldownDuration;
 				_attackHelper.SetActive (true);
 
 				_storedDashDir = diff.normalized;
 				_currentDashStrength = _dashForce;
 				_dashing = true;
+				_currentDashCount++;
 			}
-
-
-
 
 		}
 
