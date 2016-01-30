@@ -4,10 +4,39 @@ using System.Collections.Generic;
 
 public class MonkManager : MonoBehaviour {
 
+	[SerializeField]
+	int _currentCharge;
 
 	[SerializeField]
-	private List<Monk> _monks = new List<Monk>();
+	int _maxCharge = 3000;
 
+	//[SerializeField]
+	//private List<Monk> _monks = new List<Monk>();
+
+
+	public void RemoveCharge(int amount)
+	{
+		_currentCharge -= amount;
+
+		if (_currentCharge < 0)
+			_currentCharge = 0;
+	}
+
+
+
+	public void IncrementCharge(int amount)
+	{
+			_currentCharge += amount;
+
+			if (_currentCharge > _maxCharge)
+				_currentCharge = _maxCharge;
+
+	}
+
+	public float GetRelativeCharge()
+	{
+		return (float)_currentCharge / _maxCharge;
+	}
 
 
 	// Use this for initialization
@@ -28,14 +57,6 @@ public class MonkManager : MonoBehaviour {
 
 	bool TestWinCondition()
 	{
-		for(int i=0;i<_monks.Count;++i)
-		{
-			if (!_monks [i].HasMaxCharge ())
-			{
-				return false;
-			}
-		}
-
-		return true;
+		return _currentCharge == _maxCharge;
 	}
 }

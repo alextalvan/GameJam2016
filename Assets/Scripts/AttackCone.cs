@@ -15,8 +15,9 @@ public class AttackCone : MonoBehaviour
 	
 	}
 
-	void OnTriggerEnter2D()
+	void OnTriggerEnter2D(Collider2D other)
 	{
-		//Debug.Log ("cone hit");
+		if (other.gameObject.CompareTag ("AI"))
+			GameObject.Destroy (other.gameObject);
 	}
 }
