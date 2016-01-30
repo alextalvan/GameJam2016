@@ -26,6 +26,8 @@ public class Player : MonoBehaviour
 
 	int _currentDashCount;
 
+	public int CurrentDashDount { get { return _currentDashCount; } }
+
 	//dashing
 	Vector2 _storedDashDir = Vector2.zero;
 	[SerializeField]
@@ -52,6 +54,8 @@ public class Player : MonoBehaviour
 	bool _startedBlink = false;
 
 	Vector2 storedBlinkDestination = Vector2.zero;
+
+	public float GetRelativeAttackCooldownTimer { get { return attackCooldownTimer / attackCooldownDuration; } }
 
 
 	// Use this for initialization
@@ -125,7 +129,7 @@ public class Player : MonoBehaviour
 			_currentDashCount = 0;
 		}
 
-		if (Input.GetMouseButtonDown(0))
+		if (Input.GetKeyDown(KeyCode.RightShift)||Input.GetKeyDown(KeyCode.H)||Input.GetMouseButtonDown(0))
 		{
 			Vector2 mPos = Camera.main.ScreenToWorldPoint (Input.mousePosition);
 
@@ -135,7 +139,7 @@ public class Player : MonoBehaviour
 
 			float angle = (float)Mathf.Atan2 (diff.y, diff.x);
 
-			_attackHelper.transform.localPosition = diff.normalized * 0.64f;
+			//_attackHelper.transform.localPosition = diff.normalized * 0.64f;
 
 
 			_attackHelper.transform.rotation = Quaternion.Euler (0, 0, angle * 180f / Mathf.PI);
