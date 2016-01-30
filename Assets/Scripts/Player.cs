@@ -21,6 +21,34 @@ public class Player : MonoBehaviour
 	[SerializeField]
 	float attackDuration = 0.05f;
 
+	//dashing
+	Vector2 _storedDashDir = Vector2.zero;
+	[SerializeField]
+	float _dashForce = 2000f;
+
+	[SerializeField]
+	float _dashFalloff = 0.9f;
+
+	float _currentDashStrength = 0f;
+
+	bool _dashing = false;
+
+
+	//blink
+	float blinkCooldownTimer = 0f;
+	[SerializeField]
+	float _blinkCooldown = 0f;
+
+	[SerializeField]
+	float blinkDelay = 0.25f;
+
+	float blinkDelayCooldownTimer = 0f;
+
+	bool _startedBlink = false;
+
+	Vector2 storedBlinkDestination = Vector2.zero;
+
+
 	// Use this for initialization
 	void Start () 
 	{
@@ -35,14 +63,45 @@ public class Player : MonoBehaviour
 
 	void Update()
 	{
-		attackCooldownTimer -= Time.deltaTime;
-		attackDurationTimer -= Time.deltaTime;
+		UpdateTimers ();
 
 		HandleMovement ();
 		HandleAttack ();
+		HandleBlink ();
 
-
+		//if (_rigid.velocity.magnitude > 50f)
+		//	_rigid.velocity = _rigid.velocity.normalized * 50f;
 	}
+
+	void UpdateTimers()
+	{
+		attackCooldownTimer -= Time.deltaTime;
+		attackDurationTimer -= Time.deltaTime;
+		blinkCooldownTimer -= Time.deltaTime;
+		blinkDelayCooldownTimer -= Time.deltaTime;
+	}
+
+	void HandleBlink()
+	{
+		if (Input.GetMouseButtonDown (1) && blinkCooldownTimer <= 0f)
+		{
+			_startedBlink = true;
+			
+			storedBlinkDestination = Camera.main.ScreenToWorldPoint (Input.mousePosition);
+			//transform.position = mPos;
+
+			blinkDelayCooldownTimer = blinkDelay;
+			blinkCooldownTimer = _blinkCooldown;
+
+		}
+
+		if (_startedBlink && blinkDelayCooldownTimer <= 0f)
+		{
+			_startedBlink = false;
+			transform.position = storedBlinkDestination;
+		}
+	}
+
 
 
 
@@ -51,6 +110,7 @@ public class Player : MonoBehaviour
 		if (attackDurationTimer <= 0f)
 		{
 			_attackHelper.SetActive (false);
+			_dashing = false;
 		}
 
 		if (Input.GetMouseButtonDown (0))
@@ -75,44 +135,29 @@ public class Player : MonoBehaviour
 				attackCooldownTimer = attackCooldownDuration;
 				attackDurationTimer = attackDuration;
 				_attackHelper.SetActive (true);
+
+				_storedDashDir = diff.normalized;
+				_currentDashStrength = _dashForce;
+				_dashing = true;
 			}
+
+
+
 
 		}
 
+		_rigid.velocity += _storedDashDir * _currentDashStrength;
+		_currentDashStrength *= _dashFalloff;
 
 	}
-
-
-	
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+		
 
 
 	void HandleMovement()
 	{
+		if (_dashing)
+			return;
+
 		_rigid.velocity = Vector2.zero;
 
 		Vector2 dir = new Vector2 (0, 0);
@@ -138,6 +183,11 @@ public class Player : MonoBehaviour
 		}
 
 		//_rigid.AddForce (dir.normalized * _speed * Time.deltaTime);
-		_rigid.velocity = dir.normalized * _speed * Time.deltaTime;
+		_rigid.velocity = dir.normalized * _speed;
+
+		if (_rigid.velocity.magnitude > 50f)
+			_rigid.velocity = _rigid.velocity.normalized * 50f;
+
+
 	}
 }
