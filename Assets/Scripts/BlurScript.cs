@@ -2,6 +2,8 @@
 
 public class BlurScript : MonoBehaviour {
 
+    [SerializeField]
+    private GameObject UI;
     private UnityStandardAssets.ImageEffects.MotionBlur motionBlur;
     private bool fade = false;
     private bool add = false;
@@ -25,11 +27,14 @@ public class BlurScript : MonoBehaviour {
             if (motionBlur.blurAmount > 0f)
             {
                 motionBlur.blurAmount -= Time.deltaTime;
+                if (UI.activeSelf)
+                    UI.SetActive(false);
             }
             else
             {
                 fade = false;
-                GameManagerScript.Enabled = true;
+                if (!GameManagerScript.Enabled)
+                    GameManagerScript.Enabled = true;
                 //Destroy(motionBlur);
                 //Destroy(this);
             }
@@ -48,6 +53,8 @@ public class BlurScript : MonoBehaviour {
             else
             {
                 add = false;
+                if (!UI.activeSelf)
+                    UI.SetActive(true);
                 //Destroy(motionBlur);
                 //Destroy(this);
             }

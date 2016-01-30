@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections;
 
 public class GameManagerScript : MonoBehaviour {
 
@@ -34,14 +33,16 @@ public class GameManagerScript : MonoBehaviour {
             {
                 gameEnabled = false;
                 blur.SetAdd = true;
-                UI.SetActive(true);
             }
             else
             {
-                gameEnabled = true;
                 blur.SetFade = true;
-                UI.SetActive(false);
             }
         }
+    }
+
+    public void Restart()
+    {
+        Application.LoadLevel(0);
     }
 }
