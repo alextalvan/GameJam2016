@@ -1,29 +1,27 @@
-﻿using UnityEngine;
-using System.Collections;
+﻿using System;
+using UnityEngine;
 
-public class AIScript : MonoBehaviour {
+abstract public class AIScript : MonoBehaviour {
 
     [SerializeField]
-    private float movementSpeed = 1f;
-    [SerializeField]
-    private float attackDamage = 1f;
+    protected float movementSpeed = 1f;
     [SerializeField]
     private float attackCoolDown = 1f;
-    private float attackTimer;
+    protected float attackTimer;
 
     private Transform monks;
-    private Transform targetMonk;
-    private Rigidbody2D rb2d;
+    protected Transform targetMonk;
+    protected Rigidbody2D rb2d;
 
     // Use this for initialization
-    void Start () {
+    protected void Start () {
         rb2d = GetComponent<Rigidbody2D>();
         monks = GameObject.Find("Monks").transform;
         GetClosestMonk();
         ResetAttackTimer();
     }
 
-    void GetClosestMonk()
+    protected void GetClosestMonk()
     {
         float closestDist = Mathf.Infinity;
 
@@ -37,10 +35,15 @@ public class AIScript : MonoBehaviour {
             }
         }
     }
-	
-	// Update is called once per frame
-	void FixedUpdate () {
+
+    // Update is called once per frame
+    void FixedUpdate () {
         UpdateAttackTimer();
+        Behave();
+    }
+
+    protected virtual void Behave()
+    {
         Chase();
     }
 
@@ -56,17 +59,8 @@ public class AIScript : MonoBehaviour {
             attackTimer -= Time.deltaTime;
     }
 
-    void ResetAttackTimer()
+    protected void ResetAttackTimer()
     {
         attackTimer = attackCoolDown;
-    }
-
-    void OnCollisionStay2D(Collision2D coll)
-    {
-        if (coll.gameObject.tag == "Monk" && attackTimer <= 0f)
-        {
-            Debug.Log(gameObject + "attacks");
-            ResetAttackTimer();
-        }
     }
 }
