@@ -1,10 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class ProgressBar : MonoBehaviour {
+public class PlayerCooldownBar : MonoBehaviour {
 
 	[SerializeField]
-	MonkManager _monk;
+	Player _monk;
 
 	Vector3 initialScale;
 
@@ -19,7 +19,12 @@ public class ProgressBar : MonoBehaviour {
 
 	void Update () 
 	{
-		float relative = _monk.GetRelativeCharge();
+		float relative = _monk.GetRelativeAttackCooldownTimer;
+
+		int dashCount = _monk.CurrentDashDount;
+
+		if (relative < 0f)
+			relative = 0f;
 
 		Vector3 newscale = new Vector3 (initialScale.x * relative,
 			initialScale.y,
@@ -27,7 +32,9 @@ public class ProgressBar : MonoBehaviour {
 
 		transform.localScale = newscale;
 
-		Vector3 c = Vector3.Lerp (new Vector3 (1, 0, 0), new Vector3 (0, 1, 0),relative);
-		_renderer.color = new Color (c.x, c.y, c.z, 1);
+		if (dashCount == 0) _renderer.color = new Color(0,0,0,0);
+		if (dashCount == 1) _renderer.color = Color.green;
+		if (dashCount == 2) _renderer.color = Color.yellow;
+		if (dashCount == 3) _renderer.color = Color.red;
 	}
 }
