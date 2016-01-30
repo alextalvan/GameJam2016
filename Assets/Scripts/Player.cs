@@ -76,7 +76,7 @@ public class Player : MonoBehaviour
 				attackDurationTimer = attackDuration;
 				_attackHelper.SetActive (true);
 			}
-				
+
 		}
 
 
