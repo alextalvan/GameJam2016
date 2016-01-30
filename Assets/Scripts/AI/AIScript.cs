@@ -14,7 +14,8 @@ abstract public class AIScript : MonoBehaviour {
     protected Rigidbody2D rb2d;
 
     // Use this for initialization
-    protected virtual void Start () {
+    protected virtual void Start()
+    {
         rb2d = GetComponent<Rigidbody2D>();
         monks = GameObject.Find("Monks").transform;
         GetClosestMonk();

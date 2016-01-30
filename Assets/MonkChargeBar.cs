@@ -17,17 +17,20 @@ public class MonkChargeBar : MonoBehaviour {
 	}
 	
 	
-	void Update () 
-	{
-		float relative = _monk.GetRelativeHealth();
+	void Update ()
+    {
+        if (GameManagerScript.Enabled)
+        {
+            float relative = _monk.GetRelativeHealth();
 
-		Vector3 newscale = new Vector3 (initialScale.x * relative,
-			                   			initialScale.y,
-			                   			initialScale.z);
+            Vector3 newscale = new Vector3(initialScale.x * relative,
+                                               initialScale.y,
+                                               initialScale.z);
 
-		transform.localScale = newscale;
+            transform.localScale = newscale;
 
-		Vector3 c = Vector3.Lerp (new Vector3 (1, 0, 0), new Vector3 (0, 1, 0),relative);
-		_renderer.color = new Color (c.x, c.y, c.z, 1);
+            Vector3 c = Vector3.Lerp(new Vector3(1, 0, 0), new Vector3(0, 1, 0), relative);
+            _renderer.color = new Color(c.x, c.y, c.z, 1);
+        }
 	}
 }

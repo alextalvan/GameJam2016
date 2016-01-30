@@ -67,13 +67,15 @@ public class Player : MonoBehaviour
 	}
 
 	void Update()
-	{
-		UpdateTimers ();
+    {
+        if (GameManagerScript.Enabled)
+        {
+            UpdateTimers();
 
-		HandleMovement ();
-		HandleAttack ();
-		HandleBlink ();
-
+            HandleMovement();
+            HandleAttack();
+            HandleBlink();
+        }
 		//if (_rigid.velocity.magnitude > 50f)
 		//	_rigid.velocity = _rigid.velocity.normalized * 50f;
 	}

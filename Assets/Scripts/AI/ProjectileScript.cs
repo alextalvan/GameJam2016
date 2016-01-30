@@ -3,6 +3,13 @@ using System.Collections;
 
 public class ProjectileScript : MonoBehaviour
 {
+    MonkManager monkmng;
+
+    [SerializeField]
+    private int chargeDamage = 10;
+
+    [SerializeField]
+    private int attackDamage = 10;
 
     private Vector2 velocity;
     private Rigidbody2D rb2d;
@@ -10,6 +17,7 @@ public class ProjectileScript : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        monkmng = GameObject.Find("Monks").GetComponent<MonkManager>();
         rb2d = GetComponent<Rigidbody2D>();
         velocity = rb2d.velocity;
     }
@@ -39,7 +47,14 @@ public class ProjectileScript : MonoBehaviour
     {
         if (coll.gameObject.tag == "Monk")
         {
-            Debug.Log("HIT");
+            //Debug.Log("HIT");
+
+            Monk m = coll.collider.GetComponent<Monk>();
+            m.Stun();
+            m.Damage(attackDamage);
+
+            monkmng.RemoveCharge(chargeDamage);
+
         }
         Destroy(gameObject);
     }
