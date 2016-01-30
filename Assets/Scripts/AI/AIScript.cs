@@ -38,8 +38,15 @@ abstract public class AIScript : MonoBehaviour {
 
     // Update is called once per frame
     void FixedUpdate () {
-        UpdateAttackTimer();
-        Behave();
+        if (GameManagerScript.Enabled)
+        {
+            UpdateAttackTimer();
+            Behave();
+        }
+        else
+        {
+            rb2d.velocity = Vector2.zero;
+        }
     }
 
     protected virtual void Behave()
