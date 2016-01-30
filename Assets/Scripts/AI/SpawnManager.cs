@@ -18,9 +18,13 @@ public class SpawnManager : MonoBehaviour {
     }
 	
 	// Update is called once per frame
-	void FixedUpdate () {
-        UpdateTimer();
-        SpawnAI();
+	void FixedUpdate ()
+    {
+        if (GameManagerScript.Enabled)
+        {
+            UpdateTimer();
+            SpawnAI();
+        }
     }
 
     void SpawnAI()

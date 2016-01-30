@@ -14,7 +14,8 @@ abstract public class AIScript : MonoBehaviour {
     protected Rigidbody2D rb2d;
 
     // Use this for initialization
-    protected virtual void Start () {
+    protected virtual void Start()
+    {
         rb2d = GetComponent<Rigidbody2D>();
         monks = GameObject.Find("Monks").transform;
         GetClosestMonk();
@@ -38,8 +39,15 @@ abstract public class AIScript : MonoBehaviour {
 
     // Update is called once per frame
     void FixedUpdate () {
-        UpdateAttackTimer();
-        Behave();
+        if (GameManagerScript.Enabled)
+        {
+            UpdateAttackTimer();
+            Behave();
+        }
+        else
+        {
+            rb2d.velocity = Vector2.zero;
+        }
     }
 
     protected virtual void Behave()

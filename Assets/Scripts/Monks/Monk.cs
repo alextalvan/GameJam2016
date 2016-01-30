@@ -33,7 +33,10 @@ public class Monk : Damageable
 	
 	void FixedUpdate () 
 	{
-		IncrementCharge ();
+        if (GameManagerScript.Enabled)
+        {
+            IncrementCharge();
+        }
 
 		//debug
 		//if (HasMaxCharge ())
@@ -41,11 +44,14 @@ public class Monk : Damageable
 	}
 
 	void Update()
-	{
-		interruptTimer -= Time.deltaTime;
+    {
+        if (GameManagerScript.Enabled)
+        {
+            interruptTimer -= Time.deltaTime;
 
-		if (interruptTimer <= 0f)
-			_allowCharge = true;
+            if (interruptTimer <= 0f)
+                _allowCharge = true;
+        }
 	}
 
 	/*
