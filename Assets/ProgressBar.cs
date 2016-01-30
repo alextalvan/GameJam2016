@@ -8,7 +8,6 @@ public class ProgressBar : MonoBehaviour {
 	
 	}
 	
-	
 	void FixedUpdate () {
 	
 	}
