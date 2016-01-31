@@ -22,6 +22,10 @@ public class MonkManager : MonoBehaviour {
 			_currentCharge = 0;
 	}
 
+    public int GetCharge
+    {
+        get { return _currentCharge; }
+    }
 
 
 	public void IncrementCharge(int amount)

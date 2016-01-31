@@ -1,27 +1,33 @@
 ﻿using UnityEngine;
 
-public class SpawnManager : MonoBehaviour {
+public class SpawnManager : MonoBehaviour
+{
 
     [SerializeField]
-    private float spawnCoolDown = 1f;
+    private float waveSpawnCoolDown = 1f;
+    private int waveStrength = 1;
     private float spawnTimer;
     [SerializeField]
     private GameObject meleeAiPrefab;
     [SerializeField]
     private GameObject rangeAiPrefab;
     private Transform AIs;
+    private MonkManager mm;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start()
+    {
         ResetTimer();
         AIs = GameObject.Find("AIs").transform;
+        mm = GameObject.Find("Monks").GetComponent<MonkManager>();
     }
-	
-	// Update is called once per frame
-	void FixedUpdate ()
+
+    // Update is called once per frame
+    void FixedUpdate()
     {
         if (GameManagerScript.Enabled)
         {
+            waveStrength = (int)Mathf.Sqrt(mm.GetCharge / 10);
             UpdateTimer();
             SpawnAI();
         }
@@ -31,10 +37,13 @@ public class SpawnManager : MonoBehaviour {
     {
         if (spawnTimer <= 0f)
         {
-            GameObject rndAI = GetRandomAIType();
-            Vector3 rndPos = GetRandomSpawnPoint();
-            GameObject newAI = Instantiate(rndAI, rndPos, Quaternion.identity) as GameObject;
-            newAI.transform.parent = AIs;
+            for (int i = 0; i < waveStrength; i++)
+            {
+                GameObject rndAI = GetRandomAIType();
+                Vector3 rndPos = GetRandomSpawnPoint();
+                GameObject newAI = Instantiate(rndAI, rndPos, Quaternion.identity) as GameObject;
+                newAI.transform.parent = AIs;
+            }
             ResetTimer();
         }
     }
@@ -73,6 +82,6 @@ public class SpawnManager : MonoBehaviour {
 
     void ResetTimer()
     {
-        spawnTimer = spawnCoolDown;
+        spawnTimer = waveSpawnCoolDown;
     }
 }
