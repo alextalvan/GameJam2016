@@ -58,10 +58,28 @@ public class Player : MonoBehaviour
 	public float GetRelativeAttackCooldownTimer { get { return attackCooldownTimer / attackCooldownDuration; } }
 
 
+
+	//buffs
+	float[] bufftimers = new float[3];
+	float _initDashForce;
+	float _initBlinkDelay;
+	CircleCollider2D attackCollider;
+	float initAttackRadius;
+
+
 	// Use this for initialization
 	void Start () 
 	{
 		_rigid = GetComponent<Rigidbody2D> ();
+
+		for (int i = 0; i < 3; ++i)
+			bufftimers [i] = 0f;
+
+		_initDashForce = _dashForce;
+		_initBlinkDelay = blinkDelay;
+
+		attackCollider = _attackHelper.GetComponent<CircleCollider2D> ();
+		initAttackRadius = attackCollider.radius;
 	}
 	
 	// Update is called once per frame
@@ -79,6 +97,7 @@ public class Player : MonoBehaviour
             HandleMovement();
             HandleAttack();
             HandleBlink();
+			HandleBuffs ();
         }
 		//if (_rigid.velocity.magnitude > 50f)
 		//	_rigid.velocity = _rigid.velocity.normalized * 50f;
@@ -90,6 +109,9 @@ public class Player : MonoBehaviour
 		attackDurationTimer -= Time.deltaTime;
 		blinkCooldownTimer -= Time.deltaTime;
 		blinkDelayCooldownTimer -= Time.deltaTime;
+
+		for (int i = 0; i < 3; ++i)
+			bufftimers [i] -= Time.deltaTime;
 	}
 
 	void HandleBlink()
@@ -202,5 +224,55 @@ public class Player : MonoBehaviour
 			_rigid.velocity = _rigid.velocity.normalized * 50f;
 
 
+	}
+
+	public void ApplyBuff(int index)
+	{
+		if (index == 0)
+		{
+			_dashForce = _initDashForce * 1.25f;
+		}
+
+		if (index == 1)
+		{
+			blinkDelay = 0f;
+		}
+
+		if (index == 2)
+		{
+			attackCollider.radius = initAttackRadius * 1.5f;
+		}
+
+		bufftimers [index] = 10.0f;
+	}
+
+	private void StopBuff(int index)
+	{
+		if (index == 0)
+		{
+			_dashForce = _initDashForce;
+		}
+
+		if (index == 1)
+		{
+			blinkDelay = _initBlinkDelay;
+		}
+
+		if (index == 2)
+		{
+			attackCollider.radius = initAttackRadius;
+		}
+	}
+
+
+	void HandleBuffs()
+	{
+		for (int i = 0; i < 3; ++i)
+		{
+			if (bufftimers [i] < 0f)
+			{
+				StopBuff (i);
+			}
+		}
 	}
 }

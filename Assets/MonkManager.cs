@@ -10,8 +10,8 @@ public class MonkManager : MonoBehaviour {
 	[SerializeField]
 	int _maxCharge = 3000;
 
-	//[SerializeField]
-	//private List<Monk> _monks = new List<Monk>();
+	[SerializeField]
+	private List<BuffGiver> _buffs = new List<BuffGiver>();
 
 
 	public void RemoveCharge(int amount)
@@ -63,4 +63,24 @@ public class MonkManager : MonoBehaviour {
 	{
 		return _currentCharge == _maxCharge;
 	}
+
+
+	void HandleBuffs()
+	{
+		if (GetRelativeCharge () >= 0.25f)
+			_buffs [0].Unlock ();
+		else
+			_buffs [0].Lock ();
+
+		if (GetRelativeCharge () >= 0.50f)
+			_buffs [1].Unlock ();
+		else
+			_buffs [1].Lock ();
+
+		if (GetRelativeCharge () >= 0.75f)
+			_buffs [2].Unlock ();
+		else
+			_buffs [2].Lock ();
+	}
+
 }
