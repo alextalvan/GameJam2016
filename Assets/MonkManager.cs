@@ -59,7 +59,7 @@ public class MonkManager : MonoBehaviour {
 
 
 
-	bool TestWinCondition()
+	public bool TestWinCondition()
 	{
 		return _currentCharge == _maxCharge;
 	}
