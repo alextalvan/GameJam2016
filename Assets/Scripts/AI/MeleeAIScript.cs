@@ -28,8 +28,9 @@ public class MeleeAIScript : AIScript
 			m.Stun ();
 			monkmng.RemoveCharge (chargeDamage);
 			m.Damage (attackDamage);
+            audioS.Play();
 
-			//m.RemoveCharge (attackDamage);
+            //m.RemoveCharge (attackDamage);
             ResetAttackTimer();
 
 			_animator.Play ("meleeAttack");

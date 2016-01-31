@@ -53,6 +53,9 @@ public class ProjectileScript : MonoBehaviour
             m.Stun();
             m.Damage(attackDamage);
 
+            if (!coll.transform.GetComponent<AudioSource>().isPlaying)
+                coll.transform.GetComponent<AudioSource>().Play();
+
             monkmng.RemoveCharge(chargeDamage);
 
         }

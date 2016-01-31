@@ -24,14 +24,13 @@ public class Monk : Damageable
 
 	Animator _anim;
 
-
 	// Use this for initialization
 	void Start () 
 	{
 		GetComponent<Animator> ().speed = 0.1f;
 		_manager = GameObject.Find ("Monks").GetComponent<MonkManager> ();
 
-		this.OnDeath += () => {GameObject.Destroy(this.gameObject);};
+        this.OnDeath += () => {GameObject.Destroy(this.gameObject);};
 
 		_anim = GetComponent<Animator> ();
 	}
@@ -97,6 +96,6 @@ public class Monk : Damageable
 	{
 		Stun ();
 		_anim.Play ("doctor_hit");
-	}
+    }
 
 }

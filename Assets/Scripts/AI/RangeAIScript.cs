@@ -62,6 +62,7 @@ public class RangeAIScript : AIScript
             projectile.GetComponent<Rigidbody2D>().velocity = projVel;
             ResetAttackTimer();
             ResetDelayTimer();
+            audioS.Play();
         }
     }
 

@@ -12,12 +12,14 @@ abstract public class AIScript : MonoBehaviour {
     private Transform monks;
     protected Transform targetMonk;
     protected Rigidbody2D rb2d;
+    protected AudioSource audioS;
 
     // Use this for initialization
     protected virtual void Start()
     {
         rb2d = GetComponent<Rigidbody2D>();
         monks = GameObject.Find("Monks").transform;
+        audioS = GetComponent<AudioSource>();
         GetClosestMonk();
         ResetAttackTimer();
     }
