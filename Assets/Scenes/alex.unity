@@ -15784,6 +15784,18 @@ Prefab:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 11498998, guid: 8ce639fe0390b2c40ad4cac004b093d7, type: 2}
+      propertyPath: transparency_strength
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 11498998, guid: 8ce639fe0390b2c40ad4cac004b093d7, type: 2}
+      propertyPath: _dashForce
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 11498998, guid: 8ce639fe0390b2c40ad4cac004b093d7, type: 2}
+      propertyPath: _dashFalloff
+      value: 0.8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8ce639fe0390b2c40ad4cac004b093d7, type: 2}
   m_IsPrefabParent: 0
@@ -25325,7 +25337,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 12
 --- !u!4 &1836995543 stripped
 Transform:
   m_PrefabParentObject: {fileID: 479754, guid: ae3241717c68efb42b487aef36513f95, type: 2}
@@ -29081,6 +29093,7 @@ GameObject:
   - 81: {fileID: 2087241149}
   - 114: {fileID: 2087241148}
   - 114: {fileID: 2087241147}
+  - 114: {fileID: 2087241154}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -29181,6 +29194,39 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 10
+--- !u!114 &2087241154
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2087241146}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58a7625302996c94ba07a8ca3351f668, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  debugClamp: 0
+  histogramComputeShader: {fileID: 7200000, guid: 5ee4b74fa28a3e74e89423dd49705fc5,
+    type: 3}
+  histogramShader: {fileID: 4800000, guid: 9a8e838691462194482a43a02e424876, type: 3}
+  m_FilmicCurve:
+    enabled: 1
+    exposureBias: 0.65
+    contrast: 1.29
+    toe: 0.18
+    lutShoulder: 0.19
+  m_ColorGrading:
+    enabled: 1
+    whiteBalance: {r: 1, g: 1, b: 1, a: 1}
+    saturation: 0.99
+    gamma: 1
+    lutColors:
+      shadows: {r: 1, g: 0.7076473, b: 0.8921948, a: 1}
+      midtones: {r: 1, g: 0.8129646, b: 0.7636014, a: 1}
+      highlights: {r: 0.6666666, g: 0.8743341, b: 1, a: 1}
+  m_UserLutTexture: {fileID: 0}
+  tonemapShader: {fileID: 4800000, guid: 964b34bbab7f5e64fa40f37eaccac1ad, type: 3}
+  validRenderTextureFormat: 1
 --- !u!1 &2087696639
 GameObject:
   m_ObjectHideFlags: 0

@@ -73,6 +73,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c40e56be108499c43906edaf167ebb54, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  chargeDamage: 10
+  attackDamage: 2
 --- !u!212 &21240870
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -121,6 +123,10 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: m_Radius
       value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: attackDamage
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
