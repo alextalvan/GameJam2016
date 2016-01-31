@@ -21,6 +21,15 @@ public class RangeAIScript : AIScript
 
     protected override void Behave()
     {
+		if (targetMonk == null)
+		{
+			GetClosestMonk ();
+
+			//no monks left
+			if (targetMonk == null)
+				return;
+		}
+
         if (Vector2.Distance(targetMonk.position, transform.position) > attackRange)
         {
             base.Behave();

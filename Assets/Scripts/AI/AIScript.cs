@@ -57,6 +57,14 @@ abstract public class AIScript : MonoBehaviour {
 
     void Chase()
     {
+		if (targetMonk == null)
+		{
+			GetClosestMonk ();
+
+			if (targetMonk == null)
+				return;
+		}
+
         Vector2 vel = (targetMonk.position - transform.position).normalized * movementSpeed;
         rb2d.velocity = vel;
     }

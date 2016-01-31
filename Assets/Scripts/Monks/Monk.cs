@@ -28,6 +28,8 @@ public class Monk : Damageable
 	{
 		GetComponent<Animator> ().speed = 0.1f;
 		_manager = GameObject.Find ("Monks").GetComponent<MonkManager> ();
+
+		this.OnDeath += () => {GameObject.Destroy(this.gameObject);};
 	}
 	
 	
