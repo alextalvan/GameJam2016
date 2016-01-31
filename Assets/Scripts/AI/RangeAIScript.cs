@@ -13,6 +13,9 @@ public class RangeAIScript : AIScript
     private float attackDelay = 0.5f;
     private float attackDelayTimer;
 
+	[SerializeField]
+	Animator _animator;
+
     new void Start()
     {
         base.Start();
@@ -63,6 +66,7 @@ public class RangeAIScript : AIScript
             ResetAttackTimer();
             ResetDelayTimer();
             audioS.Play();
+			_animator.Play ("RangedAttack");
         }
     }
 
