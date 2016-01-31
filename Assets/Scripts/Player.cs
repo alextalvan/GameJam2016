@@ -67,6 +67,25 @@ public class Player : MonoBehaviour
 	float initAttackRadius;
 
 
+	//sprites
+	[SerializeField]
+	SpriteRenderer _spriteContainer;
+
+	[SerializeField]
+	Sprite idle;
+
+	[SerializeField]
+	Sprite forward;
+
+	[SerializeField]
+	Sprite down;
+
+	[SerializeField]
+	Sprite up;
+
+	[SerializeField]
+	float transparency_strength = 75f;
+
 	// Use this for initialization
 	void Start () 
 	{
@@ -80,6 +99,7 @@ public class Player : MonoBehaviour
 
 		attackCollider = _attackHelper.GetComponent<CircleCollider2D> ();
 		initAttackRadius = attackCollider.radius;
+
 	}
 	
 	// Update is called once per frame
@@ -96,8 +116,13 @@ public class Player : MonoBehaviour
 
             HandleMovement();
             HandleAttack();
+
             HandleBlink();
 			HandleBuffs ();
+
+			UpdateSprite ();
+
+
         }
 		//if (_rigid.velocity.magnitude > 50f)
 		//	_rigid.velocity = _rigid.velocity.normalized * 50f;
@@ -274,5 +299,64 @@ public class Player : MonoBehaviour
 				StopBuff (i);
 			}
 		}
+	}
+
+
+	void UpdateSprite()
+	{
+		Vector2 v = _rigid.velocity;
+
+
+		_spriteContainer.flipX = (v.x < 0);
+
+
+		if (v.magnitude <= 2f)
+		{
+			_spriteContainer.sprite = idle;
+			return;
+		}
+
+		/*
+		if (v.x > 6 * v.y)
+		{
+			_spriteContainer.sprite = forward;
+			return;
+		}
+		else
+		{
+			if(v.y > 0)
+			{
+				_spriteContainer.sprite = down;
+				return;
+			}
+			else
+			{
+				_spriteContainer.sprite = up;
+				return;
+			}
+		}
+		*/
+
+		_spriteContainer.color = new Color (1f, 1f, 1f, 1f - v.magnitude/transparency_strength);
+
+		if(_currentDashCount == 1)
+		{
+			_spriteContainer.sprite = up;
+			return;
+		}
+
+		if(_currentDashCount == 2)
+		{
+			_spriteContainer.sprite = down;
+			return;
+		}
+
+		if(_currentDashCount == 3)
+		{
+			_spriteContainer.sprite = forward;
+			return;
+		}
+
+
 	}
 }
