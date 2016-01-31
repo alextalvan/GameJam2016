@@ -11,8 +11,11 @@ public class SpawnManager : MonoBehaviour
     private GameObject meleeAiPrefab;
     [SerializeField]
     private GameObject rangeAiPrefab;
+    [SerializeField]
+    private float waveModifier = 1f;
     private Transform AIs;
     private MonkManager mm;
+    private bool reset = true;
 
     // Use this for initialization
     void Start()
@@ -27,7 +30,7 @@ public class SpawnManager : MonoBehaviour
     {
         if (GameManagerScript.Enabled)
         {
-            waveStrength = (int)Mathf.Sqrt(mm.GetCharge / 10);
+            waveStrength = (int)(mm.GetRelativeCharge() * waveModifier);
             UpdateTimer();
             SpawnAI();
         }
@@ -35,6 +38,12 @@ public class SpawnManager : MonoBehaviour
 
     void SpawnAI()
     {
+        if (reset && AIs.childCount == 0)
+        {
+            ResetTimer();
+            reset = false;
+        }
+
         if (spawnTimer <= 0f && AIs.childCount == 0)
         {
             for (int i = 0; i < waveStrength; i++)
@@ -43,8 +52,8 @@ public class SpawnManager : MonoBehaviour
                 Vector3 rndPos = GetRandomSpawnPoint();
                 GameObject newAI = Instantiate(rndAI, rndPos, Quaternion.identity) as GameObject;
                 newAI.transform.parent = AIs;
+                reset = true;
             }
-            ResetTimer();
         }
     }
 

@@ -20833,9 +20833,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9424a51268d19d428c66c3500417a9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  waveSpawnCoolDown: 5
+  waveSpawnCoolDown: 2
   meleeAiPrefab: {fileID: 156116, guid: 977ab2761174b234cbc0d871049b241c, type: 2}
   rangeAiPrefab: {fileID: 156116, guid: e33da78b73bdbeb48823eb71a55bde22, type: 2}
+  waveModifier: 25
 --- !u!4 &1454101661
 Transform:
   m_ObjectHideFlags: 0
