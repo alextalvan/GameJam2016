@@ -1657,7 +1657,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f8d9164329644c42a4366bd8e54c046, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _monk: {fileID: 1022140299}
+  _player: {fileID: 1022140299}
 --- !u!212 &38410598
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -8863,7 +8863,7 @@ SpriteRenderer:
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000e000000000000000, type: 0}
+  - {fileID: 2100000, guid: 5e75252aff690d049a6dfbeb4ce80235, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 0

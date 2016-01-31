@@ -10,6 +10,9 @@ public class MeleeAIScript : AIScript
 
 	MonkManager monkmng;
 
+	[SerializeField]
+	Animator _animator;
+
 	protected override void Start()
 	{
 		base.Start ();
@@ -28,6 +31,8 @@ public class MeleeAIScript : AIScript
 
 			//m.RemoveCharge (attackDamage);
             ResetAttackTimer();
+
+			_animator.Play ("meleeAttack");
         }
     }
 }
