@@ -65,8 +65,8 @@ public class Player : MonoBehaviour
 	float[] bufftimers = new float[3];
 	float _initDashForce;
 	float _initBlinkDelay;
-	CircleCollider2D attackCollider;
-	float initAttackRadius;
+	Transform attackCollider;
+	//float initAttackRadius;
 
 
 	//sprites
@@ -100,8 +100,8 @@ public class Player : MonoBehaviour
 		_initDashForce = _dashForce;
 		_initBlinkDelay = blinkDelay;
 
-		attackCollider = _attackHelper.GetComponent<CircleCollider2D> ();
-		initAttackRadius = attackCollider.radius;
+		//attackCollider = _attackHelper.GetComponent<CircleCollider2D> ();
+		//initAttackRadius = attackCollider.radius;
 
 	}
 	
@@ -193,7 +193,7 @@ public class Player : MonoBehaviour
 
 			float angle = (float)Mathf.Atan2 (diff.y, diff.x);
 
-			//_attackHelper.transform.localPosition = diff.normalized * 0.64f;
+			_attackHelper.transform.localPosition = diff.normalized * 0.64f;
 
 
 			_attackHelper.transform.rotation = Quaternion.Euler (0, 0, angle * 180f / Mathf.PI);
@@ -274,7 +274,8 @@ public class Player : MonoBehaviour
 
 		if (index == 2)
 		{
-			attackCollider.radius = initAttackRadius * 1.5f;
+			//attackCollider.radius = initAttackRadius * 1.5f;
+			attackCollider.transform.localScale = new Vector3(1.5f,1,1);
 		}
 
 		bufftimers [index] = 10.0f;
@@ -294,7 +295,8 @@ public class Player : MonoBehaviour
 
 		if (index == 2)
 		{
-			attackCollider.radius = initAttackRadius;
+			//attackCollider.radius = initAttackRadius;
+			attackCollider.transform.localScale = new Vector3(1,1,1);
 		}
 	}
 
