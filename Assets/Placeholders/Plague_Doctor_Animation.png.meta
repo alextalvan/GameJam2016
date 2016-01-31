@@ -1,0 +1,165 @@
+fileFormatVersion: 2
+guid: 99500e21e724bae4291de665a798177c
+timeCreated: 1454239278
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: Plague_Doctor_Animation_0
+    21300002: Plague_Doctor_Animation_1
+    21300004: Plague_Doctor_Animation_2
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 7
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  allowsAlphaSplitting: 0
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: Plague_Doctor_Animation_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -18, y: 124}
+        - {x: -22, y: 119}
+        - {x: -21, y: 116}
+        - {x: -47, y: 80}
+        - {x: -53, y: 4}
+        - {x: -53, y: -87}
+        - {x: -28, y: -115}
+        - {x: 22, y: -115}
+        - {x: 59, y: -74}
+        - {x: 59, y: 106}
+        - {x: 38, y: 124}
+    - name: Plague_Doctor_Animation_1
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 0
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 21, y: -115}
+        - {x: 61, y: -65}
+        - {x: 54, y: -54}
+        - {x: 61, y: 24}
+        - {x: 43, y: 33}
+        - {x: 39, y: 32}
+        - {x: 40, y: 23}
+        - {x: 37, y: 18}
+        - {x: 35, y: 13}
+        - {x: 36, y: 15}
+        - {x: 36, y: 21}
+        - {x: 39, y: 27}
+        - {x: 36, y: 36}
+        - {x: 33, y: 34}
+        - {x: 31, y: 32}
+        - {x: 29, y: 26}
+        - {x: 29, y: 20}
+        - {x: 29, y: 23}
+        - {x: 26, y: 27}
+        - {x: 23, y: 28}
+        - {x: 16, y: 41}
+        - {x: 62, y: 38}
+        - {x: 62, y: 92}
+        - {x: 41, y: 122}
+        - {x: -15, y: 122}
+        - {x: -19, y: 117}
+        - {x: -39, y: 78}
+        - {x: -36, y: 34}
+        - {x: -55, y: -61}
+        - {x: -55, y: -75}
+        - {x: -53, y: -77}
+        - {x: -29, y: -73}
+        - {x: -17, y: -115}
+        - {x: -1, y: -115}
+        - {x: -2, y: -110}
+        - {x: 1, y: -115}
+    - name: Plague_Doctor_Animation_2
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 0
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 51, y: 13}
+        - {x: 44, y: 23}
+        - {x: 65, y: 21}
+        - {x: 65, y: 119}
+        - {x: -37, y: 119}
+        - {x: -40, y: 118}
+        - {x: -53, y: 63}
+        - {x: -53, y: -107}
+        - {x: -27, y: -115}
+        - {x: 21, y: -115}
+        - {x: 63, y: -77}
+      - - {x: 23, y: 12}
+        - {x: 23, y: -29}
+        - {x: 27, y: -44}
+        - {x: 52, y: -44}
+        - {x: 56, y: -32}
+        - {x: 56, y: 12}
+      - - {x: 37, y: 13}
+        - {x: 35, y: 10}
+        - {x: 35, y: -1}
+        - {x: 38, y: -8}
+        - {x: 41, y: -8}
+        - {x: 43, y: -7}
+        - {x: 43, y: 11}
+        - {x: 42, y: 13}
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

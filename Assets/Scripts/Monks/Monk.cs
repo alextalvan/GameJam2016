@@ -22,6 +22,8 @@ public class Monk : Damageable
 
 	float interruptTimer = 0f;
 
+	Animator _anim;
+
 
 	// Use this for initialization
 	void Start () 
@@ -30,6 +32,8 @@ public class Monk : Damageable
 		_manager = GameObject.Find ("Monks").GetComponent<MonkManager> ();
 
 		this.OnDeath += () => {GameObject.Destroy(this.gameObject);};
+
+		_anim = GetComponent<Animator> ();
 	}
 	
 	
@@ -92,6 +96,7 @@ public class Monk : Damageable
 	void OnCollisionEnter2D()
 	{
 		Stun ();
+		_anim.Play ("doctor_hit");
 	}
 
 }

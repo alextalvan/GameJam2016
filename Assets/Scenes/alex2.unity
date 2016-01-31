@@ -603,6 +603,10 @@ Prefab:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 11498998, guid: 8ce639fe0390b2c40ad4cac004b093d7, type: 2}
+      propertyPath: transparency_strength
+      value: 45
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8ce639fe0390b2c40ad4cac004b093d7, type: 2}
   m_IsPrefabParent: 0
