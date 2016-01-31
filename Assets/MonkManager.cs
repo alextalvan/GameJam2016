@@ -49,15 +49,10 @@ public class MonkManager : MonoBehaviour {
 	
 	}
 	
-	
 	void FixedUpdate () 
 	{
 		
 	}
-
-
-
-
 
 	public bool TestWinCondition()
 	{

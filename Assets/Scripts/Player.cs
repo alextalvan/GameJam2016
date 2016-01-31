@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-using System.Collections;
+using System.Collections.Generic;
 
 public class Player : MonoBehaviour 
 {
@@ -27,7 +27,9 @@ public class Player : MonoBehaviour
 	int _currentDashCount;
 
 	public int CurrentDashDount { get { return _currentDashCount; } }
-
+    [SerializeField]
+    List<AudioClip> aClips = new List<AudioClip>();
+    AudioSource audioS;
 	//dashing
 	Vector2 _storedDashDir = Vector2.zero;
 	[SerializeField]
@@ -90,8 +92,9 @@ public class Player : MonoBehaviour
 	void Start () 
 	{
 		_rigid = GetComponent<Rigidbody2D> ();
+        audioS = GetComponent<AudioSource>();
 
-		for (int i = 0; i < 3; ++i)
+        for (int i = 0; i < 3; ++i)
 			bufftimers [i] = 0f;
 
 		_initDashForce = _dashForce;
@@ -144,8 +147,10 @@ public class Player : MonoBehaviour
 		if (Input.GetMouseButtonDown (1) && blinkCooldownTimer <= 0f)
 		{
 			_startedBlink = true;
-			
-			storedBlinkDestination = Camera.main.ScreenToWorldPoint (Input.mousePosition);
+
+            audioS.clip = aClips[1];
+            audioS.Play();
+            storedBlinkDestination = Camera.main.ScreenToWorldPoint (Input.mousePosition);
 			//transform.position = mPos;
 
 			blinkDelayCooldownTimer = blinkDelay;
@@ -157,6 +162,8 @@ public class Player : MonoBehaviour
 		{
 			_startedBlink = false;
 			transform.position = storedBlinkDestination;
+            audioS.clip = aClips[1];
+            audioS.Play();
 		}
 	}
 
@@ -191,10 +198,12 @@ public class Player : MonoBehaviour
 
 			_attackHelper.transform.rotation = Quaternion.Euler (0, 0, angle * 180f / Mathf.PI);
 
+            if (_currentDashCount < dashesBeforeCooldown)
+            {
 
-			if (_currentDashCount < dashesBeforeCooldown)
-			{
-				attackDurationTimer = attackDuration;
+                audioS.clip = aClips[0];
+                audioS.Play();
+                attackDurationTimer = attackDuration;
 				attackCooldownTimer = attackCooldownDuration;
 				_attackHelper.SetActive (true);
 
