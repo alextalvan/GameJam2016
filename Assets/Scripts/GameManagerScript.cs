@@ -9,6 +9,8 @@ public class GameManagerScript : MonoBehaviour {
     [SerializeField]
     private BlurScript blur;
 
+    private Transform monks;
+
     static public bool Enabled
     {
         get { return gameEnabled; }
@@ -17,11 +19,13 @@ public class GameManagerScript : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-
+        monks = GameObject.Find("Monks").transform;
     }
 	
 	// Update is called once per frame
-	void Update () {
+	void Update ()
+    {
+        CheckGameState();
         ChangeGameState();
     }
 
@@ -38,6 +42,36 @@ public class GameManagerScript : MonoBehaviour {
             {
                 blur.SetFade = true;
             }
+        }
+    }
+
+    private void CheckGameState()
+    {
+        if (monks.childCount == 0)
+        {
+            GameOver(false);
+        }
+        else if (monks.GetComponent<MonkManager>().TestWinCondition())
+        {
+            GameOver(true);
+        }
+    }
+
+    public void GameOver(bool won)
+    {
+        if (won)
+        {
+            gameEnabled = false;
+            blur.SetAdd = true;
+            UI.transform.GetChild(2).gameObject.SetActive(false);
+            UI.transform.GetChild(5).gameObject.SetActive(true);
+        }
+        else
+        {
+            gameEnabled = false;
+            blur.SetAdd = true;
+            UI.transform.GetChild(2).gameObject.SetActive(false);
+            UI.transform.GetChild(4).gameObject.SetActive(true);
         }
     }
 
