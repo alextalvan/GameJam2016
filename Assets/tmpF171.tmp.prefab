@@ -13,7 +13,7 @@ GameObject:
   - 114: {fileID: 11420148}
   - 58: {fileID: 5829284}
   m_Layer: 10
-  m_Name: MeleeAI
+  m_Name: tmpF171.tmp
   m_TagString: AI
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
