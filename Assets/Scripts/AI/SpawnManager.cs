@@ -35,7 +35,7 @@ public class SpawnManager : MonoBehaviour
 
     void SpawnAI()
     {
-        if (spawnTimer <= 0f)
+        if (spawnTimer <= 0f && AIs.childCount == 0)
         {
             for (int i = 0; i < waveStrength; i++)
             {
